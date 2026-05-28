@@ -37,21 +37,21 @@
         <p class="subtitle reveal" style="animation-delay: 0.2s">An enterprise-grade, hyper-optimized IDE featuring autonomous local agents, seamless Model Context Protocol (MCP) integrations, and native cross-platform performance.</p>
         
         <div class="download-grid reveal" id="download" style="animation-delay: 0.3s">
-            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-macOS.zip" class="btn btn-mac" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+            <a href="ThothIDE-macOS.zip" class="btn btn-mac" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                 <span class="icon">🍎</span> 
                 <div class="btn-text">
                     <span class="main-text">Download for macOS</span>
                     <span class="subtext">Apple Silicon & Intel</span>
                 </div>
             </a>
-            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Windows.zip" class="btn btn-win" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+            <a href="ThothIDE.exe" class="btn btn-win" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                 <span class="icon">⊞</span> 
                 <div class="btn-text">
                     <span class="main-text">Download for Windows</span>
                     <span class="subtext">Windows 10 / 11 Native</span>
                 </div>
             </a>
-            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Linux.zip" class="btn btn-lin" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+            <a href="ThothIDE-Linux.zip" class="btn btn-lin" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                 <span class="icon">🐧</span> 
                 <div class="btn-text">
                     <span class="main-text">Download for Linux</span>
@@ -168,6 +168,21 @@
                     <h3>Tool Calling Matrix</h3>
                     <p>Agentic tools are registered at boot. When the model requests an action (e.g., <kbd>write_to_file</kbd>), the IDE intercepts it, executes the OS-level operation, and feeds the results back to the model seamlessly.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="telemetry-section" id="telemetry">
+        <h2 class="section-title reveal">Live AI Telemetry</h2>
+        <div class="terminal-wrapper reveal" data-tilt data-tilt-max="2" data-tilt-speed="1000">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <div class="terminal-title">thoth-daemon — 80x24</div>
+            </div>
+            <div class="terminal-body" id="live-terminal">
+                <!-- Lines added by JS -->
             </div>
         </div>
     </section>
