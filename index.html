@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThothIDE | The AI-Powered Python Environment</title>
+    <title>ThothIDE | Advanced AI Desktop Environment</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
     <div class="background-effects">
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
     </div>
 
     <nav>
@@ -21,121 +24,161 @@
         </div>
         <div class="nav-links">
             <a href="#features">Features</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#download" class="nav-cta">Download</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#download" class="nav-cta">Download Now</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content reveal">
-            <div class="logo-wrapper">
-                <img src="assets/logo.png" alt="ThothIDE Logo" class="floating-logo">
-            </div>
-            <h1 class="gradient-text">Code at the Speed of Thought</h1>
-            <p class="subtitle">ThothIDE is an advanced, AI-powered desktop development environment seamlessly integrated with Hugging Face and the Model Context Protocol.</p>
-            
-            <div class="download-grid" id="download">
-                <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-macOS.zip" class="btn btn-mac">
-                    <span class="icon">🍎</span> Download for macOS
-                    <span class="subtext">Requires macOS 10.15+</span>
-                </a>
-                <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Windows.zip" class="btn btn-win">
-                    <span class="icon">⊞</span> Download for Windows
-                    <span class="subtext">Windows 10 / 11</span>
-                </a>
-                <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Linux.zip" class="btn btn-lin">
-                    <span class="icon">🐧</span> Download for Linux
-                    <span class="subtext">Standalone Binary</span>
-                </a>
-            </div>
-        </div>
+        <div class="badge-pill reveal">Developed by Eng. Ali Khalid</div>
+        <img src="assets/logo.png" alt="ThothIDE Logo" class="floating-logo reveal">
+        <h1 class="gradient-text reveal">The Future of AI Engineering</h1>
+        <h2 class="gradient-text-gold reveal" style="animation-delay: 0.1s">On Your Desktop</h2>
+        <p class="subtitle reveal" style="animation-delay: 0.2s">An enterprise-grade, hyper-optimized IDE featuring autonomous local agents, seamless Model Context Protocol (MCP) integrations, and native cross-platform performance.</p>
         
-        <div class="hero-image reveal">
+        <div class="download-grid reveal" id="download" style="animation-delay: 0.3s">
+            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-macOS.zip" class="btn btn-mac" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <span class="icon">🍎</span> 
+                <div class="btn-text">
+                    <span class="main-text">Download for macOS</span>
+                    <span class="subtext">Apple Silicon & Intel</span>
+                </div>
+            </a>
+            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Windows.zip" class="btn btn-win" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <span class="icon">⊞</span> 
+                <div class="btn-text">
+                    <span class="main-text">Download for Windows</span>
+                    <span class="subtext">Windows 10 / 11 Native</span>
+                </div>
+            </a>
+            <a href="https://github.com/Alouakhalid/ThothIDE-Website/releases/latest/download/ThothIDE-Linux.zip" class="btn btn-lin" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <span class="icon">🐧</span> 
+                <div class="btn-text">
+                    <span class="main-text">Download for Linux</span>
+                    <span class="subtext">Standalone Binary</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mockup-wrapper reveal" style="animation-delay: 0.5s" data-tilt data-tilt-max="3" data-tilt-speed="1000">
             <div class="mockup-window">
                 <div class="mockup-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
+                    <div class="window-controls">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="window-title">agent_worker.py — ThothIDE</div>
                 </div>
                 <div class="mockup-body">
-                    <div class="code-line"><span class="keyword">from</span> ui.agent_tools <span class="keyword">import</span> MCPHub</div>
-                    <div class="code-line"><span class="keyword">class</span> <span class="class-name">AIAssistant</span>:</div>
-                    <div class="code-line indent-1"><span class="keyword">def</span> <span class="method">__init__</span>(<span class="keyword">self</span>):</div>
-                    <div class="code-line indent-2"><span class="keyword">self</span>.agent = MCPHub.connect()</div>
-                    <div class="code-line indent-2"><span class="comment"># Autonomous coding enabled</span></div>
-                    <div class="code-line indent-1">@autonomous</div>
-                    <div class="code-line indent-1"><span class="keyword">def</span> <span class="method">build_app</span>(<span class="keyword">self</span>, prompt):</div>
-                    <div class="code-line indent-2"><span class="keyword">return</span> <span class="keyword">self</span>.agent.execute(prompt)</div>
-                    <div class="cursor"></div>
+                    <div class="code-line"><span class="keyword">class</span> <span class="class-name">ThothAgentWorker</span>(<span class="class-name">QThread</span>):</div>
+                    <div class="code-line indent-1"><span class="keyword">def</span> <span class="method">run</span>(self):</div>
+                    <div class="code-line indent-2"><span class="comment"># Autonomous Background MCP Execution</span></div>
+                    <div class="code-line indent-2">context = self.mcp_client.get_context()</div>
+                    <div class="code-line indent-2">response = self.llm.execute_agent_loop(</div>
+                    <div class="code-line indent-3">tools=self.mcp_client.get_tools(),</div>
+                    <div class="code-line indent-3">context=context</div>
+                    <div class="code-line indent-2">)</div>
+                    <div class="code-line indent-2">self.update_ui.emit(response)</div>
                 </div>
             </div>
+            <div class="mockup-glow"></div>
         </div>
     </header>
 
     <section id="features" class="features-section">
-        <div class="section-header reveal">
-            <h2 class="gradient-text-gold">Next-Generation Capabilities</h2>
-            <p>Built for engineers who demand total control and intelligent automation.</p>
-        </div>
-        
+        <h2 class="section-title reveal">Next-Generation Capabilities</h2>
         <div class="features-grid">
-            <div class="feature-card reveal">
+            <div class="feature-card reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <div class="feature-icon">🤖</div>
-                <h3>Autonomous Agent</h3>
-                <p>The built-in Thoth AI runs in the background. Ask it to build a full Flask API, and it will silently create files, write code, and open them for you.</p>
+                <h3>Autonomous Agentic Threads</h3>
+                <p>Built with non-blocking QThreads. Your AI agent works silently in the background, executing commands, reading files, and writing code without ever freezing the UI.</p>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">⚙️</div>
+            <div class="feature-card reveal" data-tilt data-tilt-max="5" data-tilt-speed="400" style="animation-delay: 0.1s">
+                <div class="feature-icon">⚡</div>
                 <h3>Model Context Protocol</h3>
-                <p>Equipped with 17 specialized tools. The agent can read PDFs, search directories, and analyze your entire codebase autonomously.</p>
+                <p>Native integration with FastMCP. The AI has secure, programmatic access to local file systems, Git repositories, and terminal shells directly through standardized protocols.</p>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">⎇</div>
-                <h3>Native Git Integration</h3>
-                <p>Directly integrated Git shell server. The AI can clone repositories, read commit history, and track changes directly from the chat.</p>
-            </div>
-            <div class="feature-card reveal">
+            <div class="feature-card reveal" data-tilt data-tilt-max="5" data-tilt-speed="400" style="animation-delay: 0.2s">
                 <div class="feature-icon">🔒</div>
-                <h3>BYOK (Bring Your Own Key)</h3>
-                <p>No subscriptions. No locked platforms. Simply bring your free Hugging Face token and run advanced open-source models natively.</p>
+                <h3>Absolute Privacy (BYOK)</h3>
+                <p>No telemetry. No tracking. You bring your own Hugging Face keys. Credentials are encrypted and stored at the root OS level, keeping your project bundles clean and secure.</p>
             </div>
         </div>
     </section>
 
-    <section id="how-it-works" class="how-it-works-section reveal">
-        <h2 class="gradient-text">How it Works</h2>
+    <section id="interactive-showcase" class="showcase-section reveal">
+        <h2 class="section-title">Seamless Workflow</h2>
+        <div class="tabs-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('tab1')">Chat Interface</button>
+                <button class="tab-btn" onclick="openTab('tab2')">Terminal Integration</button>
+                <button class="tab-btn" onclick="openTab('tab3')">Cross-Platform</button>
+            </div>
+            <div class="tab-content active" id="tab1">
+                <div class="tab-inner">
+                    <div class="tab-text">
+                        <h3>Fluid, Split-Pane Editor</h3>
+                        <p>Experience a Dark+ themed interface inspired by the world's leading IDEs. The AI chat sits right next to your code, providing real-time architectural advice and auto-generating functional files.</p>
+                    </div>
+                    <div class="tab-visual gradient-1"></div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab2">
+                <div class="tab-inner">
+                    <div class="tab-text">
+                        <h3>Built-in Terminal Control</h3>
+                        <p>ThothIDE isn't just an editor; it's a command center. The AI can natively trigger Git commits, execute shell commands, and read standard output to debug errors automatically.</p>
+                    </div>
+                    <div class="tab-visual gradient-2"></div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab3">
+                <div class="tab-inner">
+                    <div class="tab-text">
+                        <h3>Build Once, Run Anywhere</h3>
+                        <p>Through robust CI/CD GitHub Actions pipelines, ThothIDE is natively compiled for macOS, Windows, and Linux. No complicated setups—just download the binary and launch.</p>
+                    </div>
+                    <div class="tab-visual gradient-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works-section" id="architecture">
+        <h2 class="section-title reveal">The Engine Room</h2>
         <div class="timeline">
-            <div class="timeline-step">
+            <div class="timeline-step reveal">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>Download & Launch</h3>
-                    <p>Run the standalone executable for your OS. Zero complex dependencies required.</p>
+                    <h3>PyQt6 Foundation</h3>
+                    <p>Powered by the ultra-fast Qt framework via Python. C++ native rendering ensures silky smooth scrolling and instant UI responsiveness, even when processing massive context windows.</p>
                 </div>
             </div>
-            <div class="timeline-step">
+            <div class="timeline-step reveal">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>Provide API Token</h3>
-                    <p>Input your Hugging Face API key in the secure, local setup dialog to unlock the AI ensemble.</p>
+                    <h3>Hugging Face Inference</h3>
+                    <p>Utilizes advanced OpenAI-compatible APIs to connect directly to the world's most powerful open-source models (like Qwen, Llama, and Mistral) instantly.</p>
                 </div>
             </div>
-            <div class="timeline-step">
+            <div class="timeline-step reveal">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>Command the Agent</h3>
-                    <p>Press <kbd>Ctrl+\\</kbd> to toggle the AI panel. Describe your goal, and watch ThothIDE build it.</p>
+                    <h3>Tool Calling Matrix</h3>
+                    <p>Agentic tools are registered at boot. When the model requests an action (e.g., <kbd>write_to_file</kbd>), the IDE intercepts it, executes the OS-level operation, and feeds the results back to the model seamlessly.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="assets/logo.png" alt="ThothIDE Logo">
-                <span>ThothIDE by LayerMind AI</span>
-            </div>
-            <p>&copy; 2026 LayerMind AI. Advanced Agentic Coding.</p>
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="Logo">
+            <span>ThothIDE</span>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Developed and Engineered by <strong>Eng. Ali Khalid</strong>. All Rights Reserved. Proprietary Software.
         </div>
     </footer>
 
