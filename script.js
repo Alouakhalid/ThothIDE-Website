@@ -1,129 +1,84 @@
-// Intersection Observer for high-performance scroll reveals
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-};
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+}, { root: null, rootMargin: '0px', threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // Optional: stop observing once revealed
-            // observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.reveal').forEach((element) => {
-    observer.observe(element);
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+        window.scrollY > 40 ? 'rgba(4,10,20,0.97)' : 'rgba(6,14,24,0.85)';
 });
 
-
-// Tab Switching Logic for Interactive Showcase
+// Tab switching
 function openTab(tabId) {
-    // Hide all contents
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.classList.remove('active'));
-
-    // Remove active class from buttons
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // Show selected content
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
-
-    // Add active class to clicked button
-    const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
-    if (activeBtn) activeBtn.classList.add('active');
+    const idx = tabId.replace('tab', '');
+    const btn = document.getElementById('tabBtn' + idx);
+    if (btn) btn.classList.add('active');
 }
 
-
-// Typewriter effect in the mockup window
+// Typewriter on mockup
 const codeLines = document.querySelectorAll('.mockup-body .code-line');
-const cursor = document.querySelector('.cursor');
-
-// Initially hide code lines
-codeLines.forEach(line => {
-    line.style.opacity = '0';
-    line.style.transform = 'translateY(5px)';
-    line.style.transition = 'all 0.3s';
-});
-
-// Run typewriter effect after a short delay
+const cursorEl  = document.querySelector('.cursor');
+codeLines.forEach(l => { l.style.opacity = '0'; l.style.transform = 'translateY(4px)'; l.style.transition = 'all 0.3s'; });
 setTimeout(() => {
     let delay = 0;
-    codeLines.forEach((line) => {
+    codeLines.forEach(line => {
         setTimeout(() => {
             line.style.opacity = '1';
             line.style.transform = 'translateY(0)';
-            line.appendChild(cursor); // Move cursor to end of current line
+            if (cursorEl) line.appendChild(cursorEl);
         }, delay);
-        delay += 600; // Type next line every 600ms
+        delay += 500;
     });
-}, 1500);
+}, 1200);
 
-// Live Telemetry Terminal Simulation
-const terminalBody = document.getElementById('live-terminal');
-const telemetryMessages = [
-    { type: 'info', text: 'Initializing Thoth Engine v2.0.4...' },
-    { type: 'info', text: 'Allocating non-blocking QThreads for UI...' },
-    { type: 'info', text: 'Loading local Hugging Face API interface...' },
-    { type: 'warn', text: 'No MCP servers detected. Starting in standalone mode.' },
-    { type: 'info', text: 'Establishing secure IPC socket on port 4519...' },
-    { type: 'info', text: 'Agent ready. Waiting for user input...' },
-    { type: 'info', text: 'User event: Requesting file edit.' },
-    { type: 'info', text: 'Executing function call: multi_replace_file_content...' },
-    { type: 'info', text: 'Code generation completed in 412ms.' }
+// Live Telemetry Terminal
+const termEl = document.getElementById('live-terminal');
+const msgs = [
+    { t:'info', s:'Initializing ThothIDE v2.0 — LayerMind AI...' },
+    { t:'info', s:'Loading PyQt6 framework (C++ runtime)...' },
+    { t:'info', s:'Allocating non-blocking QThreads for UI isolation...' },
+    { t:'info', s:'Connecting to Hugging Face Inference API...' },
+    { t:'info', s:'Registering MCP tool registry (17 tools)...' },
+    { t:'warn', s:'No MCP servers detected. Starting in embedded mode.' },
+    { t:'info', s:'Secure IPC socket established on port 4519...' },
+    { t:'info', s:'Agent mode: ACTIVE — tool calling enabled.' },
+    { t:'info', s:'Workspace: /Users/ali/projects/my_app loaded.' },
+    { t:'info', s:'User event: "Build a FastAPI server with /health endpoint"' },
+    { t:'info', s:'Executing tool call: write_file → server.py' },
+    { t:'info', s:'Tool executed successfully. File written: server.py (42 lines)' },
+    { t:'info', s:'Code generation complete in 387ms.' },
+    { t:'info', s:'Refreshing file explorer tree...' },
+    { t:'info', s:'Ready. Waiting for next instruction...' },
 ];
+let idx = 0, running = false;
 
-let termMsgIndex = 0;
-let isTerminalRunning = false;
+const termObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !running) { running = true; startTelemetry(); }
+}, { threshold: 0.4 });
+if (termEl) termObs.observe(document.querySelector('.telemetry-section'));
 
-const observerTerm = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !isTerminalRunning) {
-        isTerminalRunning = true;
-        runTelemetry();
-    }
-}, { threshold: 0.5 });
-
-if(terminalBody) {
-    observerTerm.observe(document.querySelector('.telemetry-section'));
+function startTelemetry() {
+    termEl.innerHTML = '<span class="term-cursor"></span>';
+    idx = 0;
+    addLine();
 }
-
-function runTelemetry() {
-    terminalBody.innerHTML = '<span class="term-cursor"></span>';
-    
-    function addLine() {
-        if (termMsgIndex >= telemetryMessages.length) {
-            setTimeout(() => {
-                termMsgIndex = 0;
-                terminalBody.innerHTML = '<span class="term-cursor"></span>';
-                addLine();
-            }, 5000);
-            return;
-        }
-
-        const msg = telemetryMessages[termMsgIndex];
-        const date = new Date();
-        const timeStr = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}.${date.getMilliseconds().toString().padStart(3, '0')}`;
-        
-        const line = document.createElement('div');
-        line.className = 'term-line';
-        line.innerHTML = `<span class="term-time">[${timeStr}]</span><span class="term-${msg.type}">${msg.text}</span>`;
-        
-        // Insert before cursor
-        const cursor = terminalBody.querySelector('.term-cursor');
-        terminalBody.insertBefore(line, cursor);
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-        
-        termMsgIndex++;
-        
-        // Random delay between 100ms and 800ms
-        const delay = Math.random() * 700 + 100;
-        setTimeout(addLine, delay);
-    }
-    
-    setTimeout(addLine, 1000);
+function addLine() {
+    if (idx >= msgs.length) { setTimeout(startTelemetry, 4000); return; }
+    const m = msgs[idx];
+    const now = new Date();
+    const ts = `${h(now.getHours())}:${h(now.getMinutes())}:${h(now.getSeconds())}.${String(now.getMilliseconds()).padStart(3,'0')}`;
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    div.innerHTML = `<span class="term-time">[${ts}]</span><span class="term-${m.t}">${m.s}</span>`;
+    const cur = termEl.querySelector('.term-cursor');
+    termEl.insertBefore(div, cur);
+    termEl.scrollTop = termEl.scrollHeight;
+    idx++;
+    setTimeout(addLine, 150 + Math.random() * 600);
 }
-
+function h(n) { return String(n).padStart(2,'0'); }
