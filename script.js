@@ -39,7 +39,7 @@ setTimeout(() => {
 // Live Telemetry Terminal
 const termEl = document.getElementById('live-terminal');
 const msgs = [
-    { t:'info', s:'Initializing ThothIDE v2.0 — LayerMind AI...' },
+    { t:'info', s:'Initializing ThothIDE v2.0 — Neurovain AI...' },
     { t:'info', s:'Loading PyQt6 framework (C++ runtime)...' },
     { t:'info', s:'Allocating non-blocking QThreads for UI isolation...' },
     { t:'info', s:'Connecting to Hugging Face Inference API...' },
